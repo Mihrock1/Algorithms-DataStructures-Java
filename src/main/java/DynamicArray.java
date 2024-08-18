@@ -1,8 +1,5 @@
 import java.util.Iterator;
-import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Objects;
-import java.util.function.Consumer;
 
 @SuppressWarnings("unchecked")
 public class DynamicArray<T> implements Iterable<T>{

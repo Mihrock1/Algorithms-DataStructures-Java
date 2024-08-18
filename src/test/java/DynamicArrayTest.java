@@ -14,19 +14,13 @@ class DynamicArrayTest {
         dynamicArray.push(3);
 
         assertThrows(IndexOutOfBoundsException.class,
-                () -> {
-                    dynamicArray.get(-1);
-                }, "Given index is negative");
+                () -> dynamicArray.get(-1), "Given index is negative");
 
         assertThrows(NoSuchElementException.class,
-                () -> {
-                    dynamicArray.get(4);
-                }, "Given index is greater than length of dynamic array");
+                () -> dynamicArray.get(4), "Given index is greater than length of dynamic array");
 
         assertThrows(NoSuchElementException.class,
-                () -> {
-                    dynamicArray.get(3);
-                }, "Given index is equal to length of dynamic array");
+                () -> dynamicArray.get(3), "Given index is equal to length of dynamic array");
     }
     
     @Test
@@ -37,24 +31,18 @@ class DynamicArrayTest {
         dynamicArray.push(3);
 
         assertThrows(IndexOutOfBoundsException.class,
-                () -> {
-                    dynamicArray.set(-1, 1);
-                }, "Given index is negative");
+                () -> dynamicArray.set(-1, 1), "Given index is negative");
 
         assertThrows(NoSuchElementException.class,
-                () -> {
-                    dynamicArray.set(4, 1);
-                }, "Given index is greater than length of dynamic array");
+                () -> dynamicArray.set(4, 1), "Given index is greater than length of dynamic array");
 
         assertThrows(NoSuchElementException.class,
-                () -> {
-                    dynamicArray.set(3, 1);
-                }, "Given index is equal to length of dynamic array");
+                () -> dynamicArray.set(3, 1), "Given index is equal to length of dynamic array");
     }
     
     @Test
     void clearTest() throws NoSuchFieldException, IllegalAccessException {
-        var dynamicArray = new DynamicArray<Integer>(5, new Integer[] {1,2,3});
+        var dynamicArray = new DynamicArray<>(5, new Integer[] {1,2,3});
         dynamicArray.clear();
         
         assertEquals(0, dynamicArray.size(), "Length variable is not set to 0");
@@ -71,7 +59,7 @@ class DynamicArrayTest {
 
     @Test
     void pushTest() {
-        var dynamicArray = new DynamicArray<Integer>(5, new Integer[] {1,2,3});
+        var dynamicArray = new DynamicArray<>(5, new Integer[] {1,2,3});
         dynamicArray.push(4);
         
         assertEquals(3, dynamicArray.indexOf(4), "Data not pushed at the end of dynamic array");
@@ -82,9 +70,7 @@ class DynamicArrayTest {
         var dynamicArray = new DynamicArray<Integer>(5);
         
         assertThrows(NoSuchElementException.class,
-                () -> {
-                    dynamicArray.pop();
-                }, "Trying to pop from empty dynamic array");
+                dynamicArray::pop, "Trying to pop from empty dynamic array");
 
         dynamicArray.push(1);
         dynamicArray.push(2);
