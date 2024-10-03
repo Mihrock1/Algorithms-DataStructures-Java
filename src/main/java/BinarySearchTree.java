@@ -89,12 +89,11 @@ public class BinarySearchTree implements Iterable<Double>{
     }
     
     public boolean search(Double data) {
-        if(data != null) {
-            return searchRec(data, root) != null;
-        }
-        else {
+        if(data == null) {
             throw new IllegalArgumentException("Can't search for NULL value");
         }
+
+        return searchRec(data, root) != null;
     }
     
     private Node searchRec(Double data, Node node) {
@@ -124,14 +123,16 @@ public class BinarySearchTree implements Iterable<Double>{
             throw new IllegalArgumentException("Can't insert NULL value");
         }
         
-        Node node = insertRec(data, root);
-        if(node == null) {
-            return false;
-        }
-
         if(this.size == 0) {
-            this.root = node;
+            this.root = new Node(data);
         }
+        else {
+            Node node = insertRec(data, root);
+            if(node == null) {
+                return false;
+            }
+        }
+        
         this.size++;
         return true;
     }
